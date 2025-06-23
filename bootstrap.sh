@@ -9,7 +9,7 @@ mkdir -p /opt/case-study/scripts
 # Download your scripts from S3 or use inline heredoc (for demo simplicity, inline here)
 cat << 'EOF' > /opt/case-study/scripts/word_count.sh
 #!/bin/bash
-BUCKET="cs5-shared-bucket"
+BUCKET="case5-bucket"
 OUT_FOLDER="out"
 COUNT_FOLDER="count"
 TMP_DIR="/tmp"
@@ -29,13 +29,13 @@ EOF
 cat << 'EOF' > /opt/case-study/scripts/ec2_start.sh
 #!/bin/bash
 INSTANCE_ID="$(curl -s http://169.254.169.254/latest/meta-data/instance-id)"
-aws ec2 start-instances --instance-ids \$INSTANCE_ID --region us-east-1
+aws ec2 start-instances --instance-ids \$INSTANCE_ID --region us-west-1
 EOF
 
 cat << 'EOF' > /opt/case-study/scripts/ec2_stop.sh
 #!/bin/bash
 INSTANCE_ID="$(curl -s http://169.254.169.254/latest/meta-data/instance-id)"
-aws ec2 stop-instances --instance-ids \$INSTANCE_ID --region us-east-1
+aws ec2 stop-instances --instance-ids \$INSTANCE_ID --region us-west-1
 EOF
 
 cat << 'EOF' > /opt/case-study/scripts/delete_old_snapshots.sh
